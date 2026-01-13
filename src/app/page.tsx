@@ -5,7 +5,7 @@ import { CopilotSidebar } from '@copilotkit/react-ui';
 import { useCopilotAction, useCopilotReadable, useCopilotChat } from '@copilotkit/react-core';
 import { Role, TextMessage } from '@copilotkit/runtime-client-gql';
 import { motion } from 'framer-motion';
-import { DynamicView, GeneratedView } from '@/components/DynamicView';
+import { DynamicView, GeneratedView, ViewBlock } from '@/components/DynamicView';
 import { HumeWidget } from '@/components/HumeWidget';
 
 // Types matching database schema
