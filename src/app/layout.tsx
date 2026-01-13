@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { NeonAuthUIProvider, UserButton } from "@neondatabase/auth/react";
+import { NeonAuthUIProvider, UserButton } from "@/lib/auth/client";
 import { authClient } from "@/lib/auth/client";
 import { Providers } from "@/components/providers";
 import "./globals.css";
