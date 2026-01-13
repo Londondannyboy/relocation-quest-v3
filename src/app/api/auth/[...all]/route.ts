@@ -1,36 +1,18 @@
-import { NextResponse } from 'next/server';
+import { authApiHandler } from '@neondatabase/neon-js/auth/next/server';
 
-// Conditionally import and create handler only if Neon Auth URL is set
 const authUrl = process.env.NEXT_PUBLIC_NEON_AUTH_URL || process.env.NEON_AUTH_BASE_URL;
 
 if (!authUrl) {
   console.warn('Neon Auth URL is not set - auth endpoints will not work');
 }
 
-let handler: { GET: any; POST: any } | null = null;
+// Create handlers that proxy to Neon Auth
+const handlers = authUrl
+  ? authApiHandler(authUrl)
+  : {
+      GET: () => new Response('Auth not configured. Set NEXT_PUBLIC_NEON_AUTH_URL environment variable.', { status: 503 }),
+      POST: () => new Response('Auth not configured. Set NEXT_PUBLIC_NEON_AUTH_URL environment variable.', { status: 503 }),
+    };
 
-if (authUrl) {
-  // Dynamic import to avoid build errors when env var not set
-  const { authApiHandler } = require('@neondatabase/neon-js/auth/next/server');
-  handler = authApiHandler(authUrl);
-}
-
-export async function GET(request: Request, context: any) {
-  if (!handler) {
-    return NextResponse.json(
-      { error: 'Neon Auth not configured. Set NEXT_PUBLIC_NEON_AUTH_URL environment variable.' },
-      { status: 503 }
-    );
-  }
-  return handler.GET(request, context);
-}
-
-export async function POST(request: Request, context: any) {
-  if (!handler) {
-    return NextResponse.json(
-      { error: 'Neon Auth not configured. Set NEXT_PUBLIC_NEON_AUTH_URL environment variable.' },
-      { status: 503 }
-    );
-  }
-  return handler.POST(request, context);
-}
+export const GET = handlers.GET;
+export const POST = handlers.POST;
