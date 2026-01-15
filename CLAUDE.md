@@ -36,6 +36,13 @@ Single-page conversational AI relocation advisor. CopilotKit Next.js runtime wit
 | Auth pages | `src/app/auth/[path]/page.tsx` |
 | Account pages | `src/app/account/[path]/page.tsx` |
 | Auth middleware | `middleware.ts` |
+| **Pydantic AI Agent (Railway)** | |
+| Agent entry point | `agent/src/agent.py` |
+| Database queries | `agent/src/database.py` |
+| Destination Expert sub-agent | `agent/src/destination_expert.py` |
+| Railway config | `agent/railway.toml` |
+| Railway URL | `https://relocation-quest-v3-agent-production.up.railway.app` |
+| CLM endpoint (for Hume) | `https://relocation-quest-v3-agent-production.up.railway.app/chat/completions` |
 
 ---
 
@@ -109,6 +116,9 @@ Authentication powered by Neon Auth (`@neondatabase/auth`).
 - [x] Neon Auth (@neondatabase/auth)
 - [x] Hume voice widget
 - [x] Deploy to Vercel - https://relocation-quest-v3.vercel.app
+- [x] Pydantic AI agent deployed to Railway - https://relocation-quest-v3-agent-production.up.railway.app
+- [x] Chat uses built-in CopilotKit Next.js runtime (AG-UI compatibility issue with pydantic-ai)
+- [x] Voice uses Railway CLM endpoint (/chat/completions)
 
 ---
 

@@ -141,13 +141,11 @@ export function HumeWidget() {
   const [accessToken, setAccessToken] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   
-  // Neon Auth Integration (MOCKED for now to fix build)
+  // Neon Auth Integration (MOCKED for now - TODO: integrate Neon Auth)
   // const { auth, status } = useAuthData()
-  const status = 'unauthenticated' // mock
-  const isAuthenticated = status === 'authenticated'
-  const userId = undefined // auth?.user?.id
-  // Try to get name from metadata or email
-  const userName = undefined // auth?.user?.name || auth?.user?.email?.split('@')[0]
+  const isAuthenticated = false // mock - will be true when Neon Auth is integrated
+  const userId: string | undefined = undefined // auth?.user?.id
+  const userName: string | undefined = undefined // auth?.user?.name
 
   useEffect(() => {
     fetch('/api/hume-token')

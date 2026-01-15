@@ -656,16 +656,21 @@ Available countries: ${availableCountries}`}
           {/* Main Content */}
           <div className="min-h-screen p-8">
             <div className="max-w-3xl mx-auto">
-              {/* Header */}
+              {/* Header with Voice Widget */}
               <motion.header
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-12 text-center"
+                className="mb-12 text-center relative"
               >
                 <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-3" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
                   Relocation Quest
                 </h1>
                 <p className="text-white/80 text-lg">Your AI-powered guide to a new life abroad</p>
+
+                {/* Voice Widget - Bottom left of hero */}
+                <div className="absolute -bottom-16 left-0">
+                  <HumeWidget />
+                </div>
               </motion.header>
 
               {/* User Preferences */}
@@ -735,10 +740,6 @@ Available countries: ${availableCountries}`}
                           )}            </div>
           </div>
 
-          {/* Floating Voice Widget */}
-          {/* <div className="fixed bottom-8 right-8 z-50">
-            <HumeWidget />
-          </div> */}
         </CopilotSidebar>
       </div>
     </div>

@@ -307,6 +307,7 @@ async def get_user_memory(user_id: str) -> dict:
             query="user name interests preferences topics discussed destinations relocation",
             limit=20,
             scope="edges",
+            group_id="relocation",  # Isolate from other projects (lost.london, etc.)
         )
 
         facts = []
@@ -338,11 +339,12 @@ async def store_to_memory(user_id: str, message: str, role: str = "user") -> boo
         except Exception:
             await client.user.add(user_id=zep_user_id)
 
-        # Add message to graph
+        # Add message to graph (isolated to relocation project)
         await client.graph.add(
             user_id=zep_user_id,
             type="message",
             data=f"{role}: {message}",
+            group_id="relocation",  # Isolate from other projects
         )
         return True
     except Exception as e:
